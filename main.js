@@ -82,50 +82,101 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ── FORM SUBMISSION ──
+
 orderForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const submitBtn = orderForm.querySelector('[type="submit"]');
   const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Sending...';
+
   submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
 
   const data = {
-    name: document.getElementById('clientName').value,
-    email: document.getElementById('clientEmail').value,
-    brand: document.getElementById('brandName').value,
-    website: document.getElementById('brandWebsite').value,
-    package: document.getElementById('packageSelect').value,
-    contact: document.getElementById('contactPref').value,
-    message: document.getElementById('message').value,
-    timestamp: new Date().toISOString(),
+
+    name: document.getElementById('clientName')?.value || '',
+    email: document.getElementById('clientEmail')?.value || '',
+
+    phone: document.getElementById('clientPhone')?.value || '',
+
+    whatsapp: document.getElementById('clientWhatsapp')?.value || '',
+
+    brand: document.getElementById('brandName')?.value || '',
+
+    website: document.getElementById('brandWebsite')?.value || '',
+
+    package: document.getElementById('packageSelect')?.value || '',
+
+    platform: document.getElementById('contactPref')?.value || '',
+
+    budget: document.getElementById('budget')?.value || '',
+
+    message: document.getElementById('message')?.value || '',
+
+    source: 'Website Lead',
+
+    timestamp: new Date().toISOString()
+
   };
 
   try {
-    if (SHEET_ENDPOINT !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+
+    if (
+      SHEET_ENDPOINT &&
+      SHEET_ENDPOINT !== 'YOUR_APPS_SCRIPT_URL_HERE'
+    ) {
+
       await fetch(SHEET_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
+
     }
+
     orderForm.style.display = 'none';
     formSuccess.style.display = 'block';
-  } catch (err) {
-    showToast('Something went wrong. Please contact us directly.');
-    submitBtn.textContent = originalText;
+
+    showToast('Request submitted successfully.');
+
+  } catch (error) {
+
+    console.error(error);
+
+    showToast(
+      'Submission failed. Please contact us via WhatsApp.'
+    );
+
     submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+
   }
+
 });
 
 // ── TOAST NOTIFICATION ──
 function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3500);
-}
 
+  const toast = document.getElementById('toast');
+
+  if (!toast) return;
+
+  toast.textContent = msg;
+
+  toast.classList.add('show');
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(() => {
+
+    toast.classList.remove('show');
+
+  }, 3500);
+
+}
 // ── SMOOTH ACTIVE NAV ──
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
@@ -133,7 +184,7 @@ window.addEventListener('scroll', () => {
   sections.forEach(sec => {
     if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
   });
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
     a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--purple)' : '';
   });
 });
@@ -145,4 +196,29 @@ window.addEventListener('load', () => {
       bar.style.width = bar.dataset.width || '0%';
     });
   }, 800);
+});
+
+// ── FLOATING WHATSAPP PULSE ──
+
+window.addEventListener('load', () => {
+
+  const wa = document.querySelector('.floating-whatsapp');
+
+  if (!wa) return;
+
+  setInterval(() => {
+
+    wa.animate(
+      [
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.08)' },
+        { transform: 'scale(1)' }
+      ],
+      {
+        duration: 1200
+      }
+    );
+
+  }, 5000);
+
 });
