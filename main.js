@@ -1,6 +1,6 @@
 // ── GOOGLE SHEETS ENDPOINT ──
 // Replace this URL with your deployed Apps Script Web App URL
-const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzwN-z9vyJAiVzP8IFqhTKjSmlKbpYUIc45IDuetmx0BUrroDzoPhN2AQcm-pOCCaqYWw/exec';
+const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxyWb-qouTate89Umo2idOYnR0pJ42iqbNsslhndEtEaHcnmo-cTj0kFxP3QWY3dLS7cA/exec';
 
 // ── NAVBAR SCROLL ──
 const nav = document.getElementById('mainNav');
