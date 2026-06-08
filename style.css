@@ -558,3 +558,252 @@ footer {
   .cta-contacts { flex-direction: column; align-items: center; }
   .form-row { grid-template-columns: 1fr; }
 }
+/* =====================================================
+   ADDITIONAL COMPONENTS FOR ORM EXPERTS AGENCY
+   ===================================================== */
+
+/* TRUST LOGO STRIP */
+
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.logo-item {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  transition: all .25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--purple-light);
+  color: var(--purple);
+  box-shadow: var(--shadow);
+}
+
+/* CASE STUDIES */
+
+#case-studies {
+  background: var(--gray-50);
+}
+
+/* TESTIMONIALS */
+
+#testimonials {
+  background: var(--white);
+}
+
+#testimonials .service-card {
+  position: relative;
+}
+
+#testimonials .service-card::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-size: 4rem;
+  line-height: 1;
+  opacity: .08;
+  color: var(--purple);
+  font-family: serif;
+}
+
+/* FAQ */
+
+#faq {
+  background: var(--gray-50);
+}
+
+#faq .service-card h3 {
+  margin-bottom: 12px;
+  color: var(--black);
+}
+
+/* CONTACT CTA ENHANCEMENTS */
+
+.cta-inner .btn {
+  margin-bottom: 24px;
+}
+
+.contact-pill {
+  min-width: 180px;
+  justify-content: center;
+}
+
+/* FLOATING WHATSAPP BUTTON */
+
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+
+  background: #25D366;
+  color: white;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: .8rem;
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 25px rgba(37,211,102,.35);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 35px rgba(37,211,102,.45);
+}
+
+/* BETTER MODAL SCROLLBAR */
+
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--purple-light);
+  border-radius: 999px;
+}
+
+/* FORM IMPROVEMENTS */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  appearance: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--gray-400);
+}
+
+/* PREMIUM HOVER EFFECTS */
+
+.service-card,
+.platform-card,
+.pricing-card {
+  will-change: transform;
+}
+
+/* HERO CARD GLOW */
+
+.reputation-card {
+  position: relative;
+}
+
+.reputation-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124,58,237,.15),
+      transparent,
+      rgba(167,139,250,.15)
+    );
+  z-index: -1;
+}
+
+/* SECTION SPACING TWEAKS */
+
+#trusted {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+#services,
+#platforms,
+#pricing,
+#case-studies,
+#testimonials,
+#process,
+#faq {
+  scroll-margin-top: 90px;
+}
+
+/* MOBILE IMPROVEMENTS */
+
+@media (max-width: 768px) {
+
+  .logo-strip {
+    gap: 12px;
+  }
+
+  .logo-item {
+    font-size: .8rem;
+    padding: 10px 16px;
+  }
+
+  .floating-whatsapp {
+    width: 58px;
+    height: 58px;
+    bottom: 18px;
+    right: 18px;
+    font-size: .7rem;
+  }
+
+  .cta-contacts {
+    width: 100%;
+  }
+
+  .contact-pill {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .pricing-price {
+    font-size: 2.3rem;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+}
+
+/* LARGE SCREEN POLISH */
+
+@media (min-width: 1200px) {
+
+  .hero-grid {
+    gap: 90px;
+  }
+
+  .services-grid {
+    gap: 28px;
+  }
+
+  .platforms-grid {
+    gap: 24px;
+  }
+
+  .pricing-grid {
+    gap: 28px;
+  }
+}
